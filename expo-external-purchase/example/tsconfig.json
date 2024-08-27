@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-external-purchase": ["../src/index"],
+      "expo-external-purchase/*": ["../src/*"]
+    }
+  }
+}
