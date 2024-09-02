@@ -16,20 +16,20 @@ public class ExpoExternalPurchaseModule: Module {
     AsyncFunction("presentNoticeSheetAsync") { (message: String) in
       return message
     }
-    AsyncFunction("canPresentAsync") { (promise: Promise) in
+    AsyncFunction("canPresentAsync") { () async throws -> Bool in
       if #available(iOS 17.4, *) {
-        Task {
-          do {
-            let canPresent = await ExternalPurchase.canPresent
-            promise.resolve(canPresent)
-          } catch {
-            promise.reject("ERR_CAN_PRESENT", "An error occurred while checking if it can present: \(error.localizedDescription)", error)
-          }
+        do {
+          return try await ExternalPurchase.canPresent
+        } catch {
+          // Hibát dobunk ahelyett, hogy promise.reject-et hívnánk
+          throw NSError(domain: "ERR_CAN_PRESENT", code: 0, userInfo: [NSLocalizedDescriptionKey: "An error occurred while checking if it can present: \(error.localizedDescription)"])
         }
       } else {
-        promise.reject("ERR_UNSUPPORTED", "iOS 17.4 or higher required.", nil)
+        // Hibát dobunk az iOS verzióhoz kapcsolódóan
+        throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 17.4 or higher required."])
       }
     }
+
 /*
     AsyncFunction("canPresentAsync") { () async throws -> Bool in
       if #available(iOS 17.4, *) {
