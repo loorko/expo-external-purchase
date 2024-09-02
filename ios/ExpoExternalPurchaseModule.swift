@@ -9,6 +9,13 @@ public class ExpoExternalPurchaseModule: Module {
       return "Hello world! 👋"
     }
     
+    AsyncFunction("canPresentAsync") { (message: String) in
+      return message
+    }
+    AsyncFunction("presentNoticeSheetAsync") { (message: String) in
+      return message
+    }
+/*
     AsyncFunction("canPresentAsync") { () async throws -> Bool in
       if #available(iOS 17.4, *) {
         return await ExternalPurchase.canPresent
@@ -16,7 +23,6 @@ public class ExpoExternalPurchaseModule: Module {
         throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 17.4 or higher required."])
       }
     }
-
     AsyncFunction("presentNoticeSheetAsync") { () async throws -> String in
       if #available(iOS 17.4, *) {
         do {
@@ -29,5 +35,6 @@ public class ExpoExternalPurchaseModule: Module {
         throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 17.4 or higher required."])
       }
     }
+*/
   }
 }
