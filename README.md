@@ -1,6 +1,6 @@
 # expo-external-purchase
 
-My new module
+Don't use it yet!!!
 
 # API documentation
 

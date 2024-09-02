@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.dependency 'ExpoModulesCore'
 
   # Specify the StoreKit framework as a dependency
-  s.framework = "StoreKit"
+  #s.framework = "StoreKit"
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
