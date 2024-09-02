@@ -7,7 +7,7 @@ public class ExpoExternalPurchaseModule: Module {
     Name("ExpoExternalPurchase")
 
     AsyncFunction("canPresentAsync") { () async throws -> Bool in
-      if #available(iOS 15.4, *) {
+      if #available(iOS 17.4, *) {
         do {
           return try await ExternalPurchase.canPresent
         } catch {
@@ -20,21 +20,21 @@ public class ExpoExternalPurchaseModule: Module {
       }
     }
     AsyncFunction("presentNoticeSheetAsync") { () async throws -> String in
-      if #available(iOS 15.4, *) {
+      if #available(iOS 17.4, *) {
         do {
           let result = try await ExternalPurchase.presentNoticeSheet()
           switch result {
-          case .continuedWithExternalPurchaseToken(let token):
-            // A token használata jelentési célokra, ha szükséges
-            return "Continued with token: \(token)"
-          default:
-            return "Action not allowed"
+            case .continuedWithExternalPurchaseToken(let token):
+              // A token használata jelentési célokra, ha szükséges
+              return "Continued with token: \(token)"
+            default:
+              return "Action not allowed"
           }
         } catch {
           throw NSError(domain: "ERR_PRESENT_NOTICE_SHEET", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to present notice sheet: \(error.localizedDescription)"])
         }
       } else {
-        throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 15.4 or higher required."])
+        throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 17.4 or higher required."])
       }
     }
   }
