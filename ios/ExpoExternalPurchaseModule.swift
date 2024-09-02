@@ -1,5 +1,5 @@
 import ExpoModulesCore
-//import StoreKit
+import StoreKit
 
 public class ExpoExternalPurchaseModule: Module {
   public func definition() -> ModuleDefinition {
@@ -8,8 +8,8 @@ public class ExpoExternalPurchaseModule: Module {
     Function("hello") {
       return "Hello world! 👋"
     }
-    /*
-    AsyncFunction("canPresentAsync") { () -> Bool in
+    
+    AsyncFunction("canPresentAsync") { () async throws -> Bool in
       if #available(iOS 16.0, *) {
         return await ExternalPurchase.canPresent
       } else {
@@ -17,7 +17,7 @@ public class ExpoExternalPurchaseModule: Module {
       }
     }
 
-    AsyncFunction("presentNoticeSheetAsync") { () -> String in
+    AsyncFunction("presentNoticeSheetAsync") { () async throws -> String in
       if #available(iOS 16.0, *) {
         do {
           let result = try await ExternalPurchase.presentNoticeSheet()
@@ -29,6 +29,5 @@ public class ExpoExternalPurchaseModule: Module {
         throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 16.0 or higher required."])
       }
     }
-    */
   }
 }
