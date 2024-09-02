@@ -1,6 +1,6 @@
 {
   "name": "expo-external-purchase",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "ExpoExternalPurchase",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -10,15 +10,13 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.platforms      = {
-    :ios => '15.1'
-  }
+  s.platforms      = { :ios => '13.4', :tvos => '13.4' }
   s.swift_version  = '5.4'
   s.source         = { git: 'https://github.com/loorko/expo-external-purchase' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
-  
+
   # Specify the StoreKit framework as a dependency
   #s.framework = "StoreKit"
 

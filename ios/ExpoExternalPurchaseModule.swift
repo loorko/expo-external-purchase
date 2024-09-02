@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import Foundation
 import StoreKit
 
 public class ExpoExternalPurchaseModule: Module {
