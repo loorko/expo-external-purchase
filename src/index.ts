@@ -2,6 +2,7 @@ import ExpoExternalPurchaseModule from './ExpoExternalPurchaseModule';
 
 export function hello(): string {
   return ExpoExternalPurchaseModule.hello();
+}
 /*
 // Az `canPresentAsync` függvény boolean értéket ad vissza
 export async function canPresentAsync(): Promise<boolean> {
