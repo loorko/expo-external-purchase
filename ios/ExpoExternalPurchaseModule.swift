@@ -10,11 +10,25 @@ public class ExpoExternalPurchaseModule: Module {
       return "Hello world! 👋"
     }
     
-    AsyncFunction("canPresentAsync") { (message: String) in
-      return message
-    }
+    //AsyncFunction("canPresentAsync") { (message: String) in
+    //  return message
+    //}
     AsyncFunction("presentNoticeSheetAsync") { (message: String) in
       return message
+    }
+    AsyncFunction("canPresentAsync") { (promise: Promise) in
+      if #available(iOS 17.4, *) {
+        Task {
+          do {
+            let canPresent = await ExternalPurchase.canPresent
+            promise.resolve(canPresent)
+          } catch {
+            promise.reject("ERR_CAN_PRESENT", "An error occurred while checking if it can present: \(error.localizedDescription)", error)
+          }
+        }
+      } else {
+        promise.reject("ERR_UNSUPPORTED", "iOS 17.4 or higher required.", nil)
+      }
     }
 /*
     AsyncFunction("canPresentAsync") { () async throws -> Bool in
