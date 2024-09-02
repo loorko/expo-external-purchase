@@ -1,10 +1,14 @@
 import ExpoModulesCore
-import StoreKit
+//import StoreKit
 
 public class ExpoExternalPurchaseModule: Module {
   public func definition() -> ModuleDefinition {
     Name("ExpoExternalPurchase")
 
+    Function("hello") {
+      return "Hello world! 👋"
+    }
+    /*
     AsyncFunction("canPresentAsync") { () -> Bool in
       if #available(iOS 16.0, *) {
         return await ExternalPurchase.canPresent
@@ -25,5 +29,6 @@ public class ExpoExternalPurchaseModule: Module {
         throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 16.0 or higher required."])
       }
     }
+    */
   }
 }
