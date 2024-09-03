@@ -13,7 +13,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "expo.modules.externalpurchase.example"
+      "bundleIdentifier": "com.your.bundleIdentifier",
+      "entitlements": {
+        "com.apple.developer.storekit.external-purchase": true
+      },
+      "infoPlist": {
+        "SKExternalPurchase": ["hu"]
+      }
     },
     "android": {
       "adaptiveIcon": {

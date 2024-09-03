@@ -17,11 +17,9 @@ public class ExpoExternalPurchaseModule: Module {
           ])
           return result
         } catch {
-          // Hibát dobunk ahelyett, hogy promise.reject-et hívnánk
           throw NSError(domain: "ERR_CAN_PRESENT", code: 0, userInfo: [NSLocalizedDescriptionKey: "An error occurred while checking if it can present: \(error.localizedDescription)"])
         }
       } else {
-        // Hibát dobunk az iOS verzióhoz kapcsolódóan
         throw NSError(domain: "ERR_UNSUPPORTED", code: 0, userInfo: [NSLocalizedDescriptionKey: "iOS 17.4 or higher required."])
       }
     }

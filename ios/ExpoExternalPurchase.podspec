@@ -14,17 +14,10 @@ Pod::Spec.new do |s|
   s.swift_version  = '5.4'
   s.source         = { git: 'https://github.com/loorko/expo-external-purchase' }
   s.static_framework = true
-
   s.dependency 'ExpoModulesCore'
-
-  # Specify the StoreKit framework as a dependency
-  #s.framework = "StoreKit"
-
-  # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'SWIFT_COMPILATION_MODE' => 'wholemodule'
   }
-
   s.source_files = "**/*.{h,m,swift}"
 end
