@@ -6,10 +6,16 @@ public class ExpoExternalPurchaseModule: Module {
   public func definition() -> ModuleDefinition {
     Name("ExpoExternalPurchase")
 
+    Events("onChangeExternalPurchase")
+
     AsyncFunction("canPresentAsync") { () async throws -> Bool in
       if #available(iOS 17.4, *) {
         do {
-          return try await ExternalPurchase.canPresent
+          let result = try await ExternalPurchase.canPresent
+          sendEvent("onChangeExternalPurchase", [
+            "result": result
+          ])
+          return result
         } catch {
           // Hibát dobunk ahelyett, hogy promise.reject-et hívnánk
           throw NSError(domain: "ERR_CAN_PRESENT", code: 0, userInfo: [NSLocalizedDescriptionKey: "An error occurred while checking if it can present: \(error.localizedDescription)"])
@@ -23,6 +29,9 @@ public class ExpoExternalPurchaseModule: Module {
       if #available(iOS 17.4, *) {
         do {
           let result = try await ExternalPurchase.presentNoticeSheet()
+          sendEvent("onChangeExternalPurchase", [
+            "result": result
+          ])
           switch result {
             case .continuedWithExternalPurchaseToken(let token):
               // A token használata jelentési célokra, ha szükséges

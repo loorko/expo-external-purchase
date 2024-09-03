@@ -1,7 +1,7 @@
 import ExpoExternalPurchaseModule from './ExpoExternalPurchaseModule';
 
-export function hello(): string {
-  return ExpoExternalPurchaseModule.hello();
+export type onChangeExternalPurchase = {
+  result: string;
 }
 
 // Az `canPresentAsync` függvény boolean értéket ad vissza
