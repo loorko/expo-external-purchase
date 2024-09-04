@@ -32,8 +32,7 @@ public class ExpoExternalPurchaseModule: Module {
           ])
           switch result {
             case .continuedWithExternalPurchaseToken(let token):
-              // A token használata jelentési célokra, ha szükséges
-              return "Continued with token: \(token)"
+              return token
             default:
               return "Action not allowed"
           }
